@@ -14,6 +14,7 @@ const USE_CASES: { value: UseCase; label: string }[] = [
   { value: "mixed", label: "Mixed / General" }
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DEFAULT_FORM: AuditFormData = {
   tools: [
     {
