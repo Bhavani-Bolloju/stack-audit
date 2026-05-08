@@ -23,3 +23,34 @@ export type AuditFormData = {
   teamSize: number;
   useCase: UseCase;
 };
+
+//Audit Results types
+
+export type Recommendation =
+  | "downgrade"
+  | "upgrade"
+  | "switch"
+  | "optimize"
+  | "credits"
+  | "optimal";
+
+export type ToolAuditResult = {
+  toolName: ToolName;
+  plan: string;
+  currentMonthlySpending: number;
+  recommendation: Recommendation;
+  recommendedAction: string;
+  estimatedMonthlySaving: number;
+  reason: string;
+};
+
+export type AuditResult = {
+  id: string;
+  toolResults: ToolAuditResult[];
+  totalMonthlySavings: number;
+  totalAnnualSavings: number;
+  useCase: UseCase;
+  teamSize: number;
+  createdAt: string;
+};
+

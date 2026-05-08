@@ -25,3 +25,16 @@
 - Forgot to commit mid-day due to time blindness — took a break and lost track. Setting a 10pm alarm going forward to protect git history.
 
 **Plan for tomorrow(Day 3):** Build the audit engine — rule-based logic evaluating each tool entry and producing recommendations and savings calculations and set up accounts to reach out to users on different platforms.
+
+
+## Day 3 — 2026-05-08
+
+**Hours worked:** 4
+
+**What I did:** Planned the full audit engine logic before writing code. Mapped evaluation criteria for all 8 tools — right plan, cheaper same vendor, cheaper alternative, credits opportunity. Researched Cursor plan details (Pro vs Pro+: 3x usage limits). Set up lib/audit/ folder structure. Wrote partial cursor audit logic. Posted user research outreach on Reddit (r/startups, r/Saas).
+
+**What I learned:** Planning the logic before coding saved me from writing something wrong. The four evaluation criteria apply to every tool in the same order — that pattern makes the remaining 7 tools faster to write.
+
+**Blockers / what I'm stuck on:** No user interview replies yet. Audit engine not complete — need to finish all 8 tool functions tomorrow morning first thing.
+
+**Plan for tomorrow:** Finish all 8 audit functions. Wire audit engine to form submit button. Store result and navigate to results page. Start results page UI.
