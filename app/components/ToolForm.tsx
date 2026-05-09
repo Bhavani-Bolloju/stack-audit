@@ -14,6 +14,8 @@ const USE_CASES: { value: UseCase; label: string }[] = [
   { value: "mixed", label: "Mixed / General" }
 ];
 
+import { runAudit } from "@/lib";
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DEFAULT_FORM: AuditFormData = {
   tools: [
@@ -89,7 +91,8 @@ function ToolForm() {
   }
 
   function handleSubmit() {
-    console.log("Submitting:", form);
+    const results = runAudit(form);
+    console.log(results);
     // audit engine comes Day 3
   }
 

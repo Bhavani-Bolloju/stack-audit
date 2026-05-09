@@ -40,7 +40,7 @@ export type ToolAuditResult = {
   currentMonthlySpending: number;
   recommendation: Recommendation;
   recommendedAction: string;
-  estimatedMonthlySaving: number;
+  estimatedMonthlySavings: number;
   reason: string;
 };
 

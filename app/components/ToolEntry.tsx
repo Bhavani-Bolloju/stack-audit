@@ -1,6 +1,7 @@
 "use client";
 
 import { ToolEntry, ToolName } from "@/lib/types";
+import { TOOL_TIERS } from "@/lib/constants";
 
 const TOOLS: { value: ToolName; label: string }[] = [
   { value: "cursor", label: "Cursor" },
@@ -12,25 +13,6 @@ const TOOLS: { value: ToolName; label: string }[] = [
   { value: "gemini", label: "Gemini" },
   { value: "windsurf", label: "Windsurf" }
 ];
-
-const PLANS: Record<ToolName, string[]> = {
-  cursor: ["Hobby", "Pro", "Pro+", "ultra", "Teams", "Enterprise"],
-  "github-copilot": ["Free", "Pro", "Pro+", "Business", "Enterprise"],
-  claude: ["Free", "Pro", "Max", "Team", "Enterprise"],
-  chatgpt: [
-    "Free",
-    "Go",
-    "Plus",
-    "Pro",
-    "Business ChatGPT & Codex",
-    "Business Codex",
-    "Enterprise"
-  ],
-  "anthropic-api": ["API direct"],
-  "openai-api": ["API"],
-  gemini: ["plus", "Pro", "Ultra", "API"],
-  windsurf: ["Free", "Pro", "Max", "Team", "Enterprise"]
-};
 
 type Props = {
   entry: ToolEntry;
@@ -61,7 +43,7 @@ function ToolEntryRow({ entry, onChange, onRemove }: Props) {
         className="border rounded px-2 py-1 text-sm"
       >
         <option value="">Select plan</option>
-        {PLANS[entry.tool].map((p) => (
+        {TOOL_TIERS[entry.tool].map((p) => (
           <option key={p} value={p}>
             {p}
           </option>
