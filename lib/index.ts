@@ -6,7 +6,8 @@ import {
 } from "./types";
 import { nanoid } from "nanoid";
 import auditCursor from "./audit/cursor";
-// import auditCopilot from "./audit/copilot";
+
+import auditCopilot from "./audit/copilot";
 // import auditClaude from "./audit/claude";
 // import auditChatGPT from "./audit/chatgpt";
 // import auditAnthropicAPI from "./audit/antropic";
@@ -18,8 +19,8 @@ function auditTool(entry: ToolEntry, formData: AuditFormData): ToolAuditResult {
   switch (entry.tool) {
     case "cursor":
       return auditCursor(entry, formData);
-    // case "github-copilot":
-    //   return auditCopilot(entry, formData);
+    case "github-copilot":
+      return auditCopilot(entry, formData);
     // case "claude":
     //   return auditClaude(entry, formData);
     // case "chatgpt":

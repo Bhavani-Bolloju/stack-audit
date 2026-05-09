@@ -26,7 +26,6 @@
 
 **Plan for tomorrow(Day 3):** Build the audit engine — rule-based logic evaluating each tool entry and producing recommendations and savings calculations and set up accounts to reach out to users on different platforms.
 
-
 ## Day 3 — 2026-05-08
 
 **Hours worked:** 4
@@ -38,3 +37,11 @@
 **Blockers / what I'm stuck on:** No user interview replies yet. Audit engine not complete — need to finish all 8 tool functions tomorrow morning first thing.
 
 **Plan for tomorrow:** Finish all 8 audit functions. Wire audit engine to form submit button. Store result and navigate to results page. Start results page UI.
+
+## Day 4 — 2026-05-09
+
+**Hours worked:** 5.5 
+**What I did:** Completed cursor.ts and copilot.ts audit functions with all 4 evaluation checks. Built getLowerTier and getAlternativeTools helper functions in constants.ts for dynamic recommendations. Tested all 5 scenarios for both tools — all passing.
+**What I learned:** Planning logic before coding saved time. Pattern is consistent across tools — remaining 6 will go faster.
+**Blockers / what I'm stuck on:** Got one Reddit reply, DM sent for user interview. Still need 2 more. Audit engine not complete — claude, chatgpt, apis, gemini, windsurf remaining.
+**Plan for tomorrow:** Finish remaining 6 audit functions first thing. Wire to results page. Start results page UI.

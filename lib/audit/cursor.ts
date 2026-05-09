@@ -3,7 +3,8 @@ import { ToolEntry, ToolAuditResult, AuditFormData } from "../types";
 import {
   TOOL_PRICES,
   getAlternativeTools,
-  CREDITS_THRESHOLD
+  CREDITS_THRESHOLD,
+  getLowerTier
 } from "../constants";
 
 const PRICES = TOOL_PRICES["cursor"];
@@ -31,16 +32,23 @@ function auditCursor(
   }
 
   //2. cheaper plan same vendor
-  if ((plan === "Ultra" || plan === "Pro+") && teamSize <= 3) {
-    const savings = seats * (pricePerSeat - PRICES["Pro"]);
+  if (
+    (plan === "Ultra" ||
+      plan === "Pro+" ||
+      plan === "Teams" ||
+      plan === "Enterprise") &&
+    teamSize <= 3
+  ) {
+    const lowerTier = getLowerTier("cursor", plan);
+    const savings = seats * (pricePerSeat - PRICES[lowerTier]);
     return {
       toolName: "cursor",
       plan,
       currentMonthlySpending: monthlySpend,
       recommendation: "downgrade",
-      recommendedAction: "Downgrade to Cursor Pro",
+      recommendedAction: `Downgrade to Cursor ${lowerTier}`,
       estimatedMonthlySavings: savings,
-      reason: `${plan} is overkill for a team of ${teamSize} — Pro covers standard usage at $${PRICES["Pro"]}/seat.`
+      reason: `${plan} is overkill for a team of ${teamSize} — ${lowerTier} covers standard usage at $${PRICES[lowerTier]}/seat.`
     };
   }
 

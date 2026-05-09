@@ -71,6 +71,16 @@ export function getAlternativeTools(
     .map(([tool]) => tool);
 }
 
+export function getLowerTier(
+  tool: ToolName,
+  currentPlan: string
+): string  {
+  const tiers = TOOL_TIERS[tool];
+  const currentIndex = tiers.indexOf(currentPlan);
+  if (currentIndex <= 0) return tiers[currentIndex];
+  return tiers[currentIndex - 1];
+}
+
 export const CREDITS_THRESHOLD = 200;
 export const SMALL_TEAM = 3;
 export const MEDIUM_TEAM = 10;
