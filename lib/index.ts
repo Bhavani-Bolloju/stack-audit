@@ -9,7 +9,7 @@ import auditCursor from "./audit/cursor";
 
 import auditCopilot from "./audit/copilot";
 import auditClaude from "./audit/claude";
-// import auditChatGPT from "./audit/chatgpt";
+import auditChatGPT from "./audit/chatgpt";
 // import auditAnthropicAPI from "./audit/antropic";
 // import auditOpenAIAPI from "./audit/openai";
 // import auditGemini from "./audit/gemini";
@@ -23,8 +23,8 @@ function auditTool(entry: ToolEntry, formData: AuditFormData): ToolAuditResult {
       return auditCopilot(entry, formData);
     case "claude":
       return auditClaude(entry, formData);
-    // case "chatgpt":
-    //   return auditChatGPT(entry, formData);
+    case "chatgpt":
+      return auditChatGPT(entry, formData);
     // case "anthropic-api":
     //   return auditAnthropicAPI(entry, formData);
     // case "openai-api":
