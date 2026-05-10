@@ -8,7 +8,7 @@ import { nanoid } from "nanoid";
 import auditCursor from "./audit/cursor";
 
 import auditCopilot from "./audit/copilot";
-// import auditClaude from "./audit/claude";
+import auditClaude from "./audit/claude";
 // import auditChatGPT from "./audit/chatgpt";
 // import auditAnthropicAPI from "./audit/antropic";
 // import auditOpenAIAPI from "./audit/openai";
@@ -21,8 +21,8 @@ function auditTool(entry: ToolEntry, formData: AuditFormData): ToolAuditResult {
       return auditCursor(entry, formData);
     case "github-copilot":
       return auditCopilot(entry, formData);
-    // case "claude":
-    //   return auditClaude(entry, formData);
+    case "claude":
+      return auditClaude(entry, formData);
     // case "chatgpt":
     //   return auditChatGPT(entry, formData);
     // case "anthropic-api":
