@@ -45,7 +45,7 @@ function auditClaude(
       recommendation: "downgrade",
       recommendedAction: `Downgrade to ${lowerTier}`,
       estimatedMonthlySavings: savings,
-      reason: `${plan} is overkill for a team of ${teamSize} — ${lowerTier} covers standard usage at $${PRICES[lowerTier]}/seat.`
+      reason: `${tool} is overkill for a team of ${teamSize} — ${lowerTier} covers standard usage at $${PRICES[lowerTier]}/seat.`
     };
   }
 
@@ -67,7 +67,7 @@ function auditClaude(
       recommendation: "switch",
       recommendedAction: `Switch to ${alternatives.join("/")}`,
       estimatedMonthlySavings: savings,
-      reason: `Claude is optimized for writing and research`
+      reason: `${tool} is optimized for writing and research`
     };
   }
 
