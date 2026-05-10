@@ -5,6 +5,7 @@ import { AuditFormData, ToolEntry, ToolName, UseCase } from "@/lib/types";
 import { loadFormData, saveFormData } from "@/lib/storage";
 import ToolEntryRow from "./ToolEntry";
 import { nanoid } from "nanoid";
+import { useRouter } from "next/navigation";
 
 const USE_CASES: { value: UseCase; label: string }[] = [
   { value: "coding", label: "Coding / Engineering" },
@@ -16,23 +17,10 @@ const USE_CASES: { value: UseCase; label: string }[] = [
 
 import { runAudit } from "@/lib";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const DEFAULT_FORM: AuditFormData = {
-  tools: [
-    {
-      id: nanoid(8),
-      tool: "cursor" as ToolName,
-      plan: "",
-      monthlySpend: 0,
-      seats: 1
-    }
-  ],
-  teamSize: 1,
-  useCase: "coding"
-};
-
 function ToolForm() {
   const [mounted, setMounted] = useState(false);
+
+  const router = useRouter();
 
   const [form, setForm] = useState<AuditFormData>(() => ({
     tools: [
@@ -92,8 +80,9 @@ function ToolForm() {
 
   function handleSubmit() {
     const results = runAudit(form);
-    console.log(results);
-    // audit engine comes Day 3
+
+    localStorage.setItem("auditResult", JSON.stringify(results));
+    router.push(`/audit/${results.id}`);
   }
 
   return (
