@@ -80,7 +80,7 @@ function ToolForm() {
 
   function handleSubmit() {
     const results = runAudit(form);
-
+    console.log(results, "results");
     localStorage.setItem("auditResult", JSON.stringify(results));
     router.push(`/audit/${results.id}`);
   }

@@ -68,9 +68,9 @@ function auditCursor(
       plan,
       currentMonthlySpending: monthlySpend,
       recommendation: "switch",
-      recommendedAction: `Switch to ${alternatives.join(" or ")}`,
+      recommendedAction: `Switch to ${alternatives.join("/")}`,
       estimatedMonthlySavings: savings,
-      reason: `Cursor is built for coding — your use case (${useCase}) is better served by ${alternatives.join(" or ")}.`
+      reason: `Cursor is built for coding — your use case (${useCase}) is better served by ${alternatives.join("/")}.`
     };
   }
 
