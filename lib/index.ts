@@ -11,7 +11,7 @@ import auditCopilot from "./audit/copilot";
 import auditClaude from "./audit/claude";
 import auditChatGPT from "./audit/chatgpt";
 import auditGemini from "./audit/gemini";
-// import auditWindsurf from "./audit/windsurf";
+import auditWindsurf from "./audit/windsurf";
 // import auditAnthropicAPI from "./audit/antropic";
 // import auditOpenAIAPI from "./audit/openai";
 
@@ -27,13 +27,13 @@ function auditTool(entry: ToolEntry, formData: AuditFormData): ToolAuditResult {
       return auditChatGPT(entry, formData);
     case "gemini":
       return auditGemini(entry, formData);
+
+    case "windsurf":
+      return auditWindsurf(entry, formData);
     // case "anthropic-api":
     //   return auditAnthropicAPI(entry, formData);
     // case "openai-api":
     //   return auditOpenAIAPI(entry, formData);
-
-    // case "windsurf":
-    //   return auditWindsurf(entry, formData);
   }
 }
 
