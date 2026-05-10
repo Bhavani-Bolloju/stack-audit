@@ -14,8 +14,8 @@ export const TOOL_TIERS: Record<ToolName, string[]> = {
     "Enterprise"
   ],
   "anthropic-api": ["API direct"],
-  "openai-api": ["API"],
-  gemini: ["plus", "Pro", "Ultra", "API"],
+  "openai-api": ["API direct"],
+  gemini: ["plus", "Pro", "Ultra", "API direct"],
   windsurf: ["Free", "Pro", "Max", "Team", "Enterprise"]
 };
 
@@ -71,10 +71,7 @@ export function getAlternativeTools(
     .map(([tool]) => tool);
 }
 
-export function getLowerTier(
-  tool: ToolName,
-  currentPlan: string
-): string  {
+export function getLowerTier(tool: ToolName, currentPlan: string): string {
   const tiers = TOOL_TIERS[tool];
   const currentIndex = tiers.indexOf(currentPlan);
   if (currentIndex <= 0) return tiers[currentIndex];

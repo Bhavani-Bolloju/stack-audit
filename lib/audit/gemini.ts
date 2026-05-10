@@ -9,6 +9,8 @@ import {
 
 const PRICES = TOOL_PRICES["gemini"];
 
+import auditGeminiAPI from "./geminiAPI";
+
 function auditGemini(
   entry: ToolEntry,
   formData: AuditFormData
@@ -17,8 +19,8 @@ function auditGemini(
   const { teamSize, useCase } = formData;
   const pricePerSeat = PRICES[plan] ?? 0;
 
-  if (plan === "API") {
-    //handle gemini api logic here
+  if (plan === "API direct") {
+    return auditGeminiAPI(entry, formData);
   }
 
   //1. over-provisioned
@@ -60,9 +62,6 @@ function auditGemini(
     );
 
     const savings = Math.max(0, monthlySpend - lowestAlternativePrice * seats);
-
-    console.log(savings, "estimated monthly savings");
-    console.log(monthlySpend, "monthly pend");
 
     return {
       toolName: tool,
