@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { AuditResult, ToolAuditResult } from "../../../lib/types";
 import Link from "next/link";
 
+import { saveLead } from "@/lib/leads";
+
 const RECOMMENDATION_COLORS: Record<string, string> = {
   downgrade: "bg-amber-50 border-amber-200 text-amber-700",
   switch: "bg-blue-50 border-blue-200 text-blue-700",
@@ -73,6 +75,22 @@ export default function AuditPage() {
   const [mounted, setMounted] = useState(false);
   const [summary, setSummary] = useState<string>("");
   const [summaryLoading, setSummaryLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleEmailSubmit() {
+    if (!email || !result) return;
+    setSubmitting(true);
+    try {
+      await saveLead(email, result);
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Failed to save lead:", err);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -199,22 +217,38 @@ export default function AuditPage() {
 
         {/* Share + capture */}
         <div className="mt-8 border border-gray-200 rounded-2xl p-6 text-center">
-          <p className="font-semibold text-gray-800 mb-1">
-            Save or share your audit
-          </p>
-          <p className="text-sm text-gray-400 mb-4">
-            Enter your email to get a copy of this report.
-          </p>
-          <div className="flex gap-2 max-w-sm mx-auto">
-            <input
-              type="email"
-              placeholder="you@company.com"
-              className="flex-1 border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
-            />
-            <button className="bg-black text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors">
-              Send report
-            </button>
-          </div>
+          {submitted ?
+            <div>
+              <p className="font-semibold text-gray-800 mb-1">Report sent! ✓</p>
+              <p className="text-sm text-gray-400">
+                Check your inbox for your audit report.
+              </p>
+            </div>
+          : <>
+              <p className="font-semibold text-gray-800 mb-1">
+                Save or share your audit
+              </p>
+              <p className="text-sm text-gray-400 mb-4">
+                Enter your email to get a copy of this report.
+              </p>
+              <div className="flex gap-2 max-w-sm mx-auto">
+                <input
+                  type="email"
+                  placeholder="you@company.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                />
+                <button
+                  onClick={handleEmailSubmit}
+                  disabled={submitting}
+                  className="bg-black text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors disabled:opacity-50"
+                >
+                  {submitting ? "Sending..." : "Send report"}
+                </button>
+              </div>
+            </>
+          }
         </div>
       </div>
     </main>

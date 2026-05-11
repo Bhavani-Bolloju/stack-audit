@@ -14,7 +14,7 @@ export async function generateSummary(result: AuditResult): Promise<string> {
     )
     .join("\n");
 
-  console.log(toolSummary, "tool summary");
+  // console.log(toolSummary, "tool summary");
 
   const prompt = `You are an AI spend analyst. Write a 100-word personalized audit summary for a startup based on this data:
 
@@ -37,11 +37,11 @@ export async function generateSummary(result: AuditResult): Promise<string> {
       contents: prompt
     });
 
-    console.log("Gemini response", JSON.stringify(response, null, 2));
+    // console.log("Gemini response", JSON.stringify(response, null, 2));
     return response.text ?? fallbackSummary(result);
-  } catch (error) {
-    console.log("fallback catch");
-    console.log(error, "error");
+  } catch {
+    // console.log("fallback catch");
+    // console.log(error, "error");
     return fallbackSummary(result);
   }
 }
