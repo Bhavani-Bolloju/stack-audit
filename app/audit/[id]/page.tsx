@@ -71,6 +71,8 @@ function ToolCard({ tool }: { tool: ToolAuditResult }) {
 export default function AuditPage() {
   const [result, setResult] = useState<AuditResult | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [summary, setSummary] = useState<string>("");
+  const [summaryLoading, setSummaryLoading] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -78,6 +80,21 @@ export default function AuditPage() {
     const stored = localStorage.getItem("auditResult");
     if (stored) setResult(JSON.parse(stored));
   }, []);
+
+  useEffect(() => {
+    if (!result) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSummaryLoading(true);
+    fetch("/api/summary", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(result)
+    })
+      .then((res) => res.json())
+      .then((data) => setSummary(data.summary))
+      .catch(() => setSummary("Unable to generate summary at this time."))
+      .finally(() => setSummaryLoading(false));
+  }, [result]);
 
   if (!mounted) return null;
   if (!result)
@@ -153,6 +170,18 @@ export default function AuditPage() {
           {result.toolResults.map((tool, i) => (
             <ToolCard key={i} tool={tool} />
           ))}
+        </div>
+
+        {/* AI summary */}
+        <div className="border border-gray-200 rounded-2xl p-6 mb-8 bg-white">
+          <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-3">
+            AI Summary
+          </p>
+          {summaryLoading ?
+            <p className="text-gray-400 text-sm italic">
+              Generating your personalized summary...
+            </p>
+          : <p className="text-gray-700 text-sm leading-relaxed">{summary}</p>}
         </div>
 
         {/* Low savings honest message */}
