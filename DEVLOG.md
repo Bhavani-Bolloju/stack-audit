@@ -57,3 +57,11 @@
 **Blockers / what I'm stuck on:** User interviews still at 0/3. Discord DM sent but no reply. Need to try more aggressively tomorrow. Anthropic API, Firebase, Resend, shareable URL all pending.
 
 **Plan for tomorrow:** Anthropic API summary integration. Firebase lead capture. Resend email. Shareable URL + OG tags. CI/CD. Tests. Deploy.
+
+## Day 6 — 2026-05-11
+
+**Hours worked:** 4.5
+**What I did:** Integrated Gemini API for AI summary generation with fallback. Set up Firebase Firestore for lead capture. Integrated Resend for transactional emails. Fixed negative savings bug caused by incorrect tier ordering in constants. All 6 MVP features nearly complete — shareable URL remaining.
+**What I learned:** Free tier restrictions on both Gemini and Resend require workarounds in development. Tier ordering matters for getLowerTier helper — price order not alphabetical order.
+**Blockers / what I'm stuck on:** User interviews still at 0/3. No replies from Reddit or Discord outreach. Need to find people urgently — this is the last day to realistically get interviews done.
+**Plan for tomorrow:** Complete shareable URL + OG tags. Deploy to Netlify. CI/CD. 5 tests. All markdown files. Submit.
