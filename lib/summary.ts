@@ -3,8 +3,7 @@ import { AuditResult } from "./types";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
-console.log("............................................");
-console.log(process.env.GEMINI_API_KEY!, "api key");
+
 
 export async function generateSummary(result: AuditResult): Promise<string> {
   const toolSummary = result.toolResults
@@ -28,8 +27,6 @@ export async function generateSummary(result: AuditResult): Promise<string> {
 
   Write in second person ("You", "Your team"). Be specific, honest, and actionable. If savings are low, acknowledge they're spending well. Do not use bullet points. Plain paragraph only.
 `;
-
-  console.log("start of the try catch block");
 
   try {
     const response = await ai.models.generateContent({

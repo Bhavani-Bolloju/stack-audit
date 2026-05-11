@@ -1,22 +1,22 @@
 import { ToolName, UseCase } from "./types";
 
 export const TOOL_TIERS: Record<ToolName, string[]> = {
-  cursor: ["Hobby", "Pro", "Pro+", "ultra", "Teams", "Enterprise"],
+  cursor: ["Hobby", "Pro", "Pro+", "Teams", "Enterprise", "ultra"],
   "github-copilot": ["Free", "Pro", "Pro+", "Business", "Enterprise"],
-  claude: ["Free", "Pro", "Max", "Team", "Enterprise"],
+  claude: ["Free", "Pro", "Team", "Max", "Enterprise"],
   chatgpt: [
     "Free",
     "Go",
     "Plus",
-    "Pro",
     "Business ChatGPT & Codex",
     "Business Codex",
-    "Enterprise"
+    "Enterprise",
+    "Pro"
   ],
   "anthropic-api": ["API direct"],
   "openai-api": ["API direct"],
   gemini: ["plus", "Pro", "Ultra", "API direct"],
-  windsurf: ["Free", "Pro", "Max", "Team", "Enterprise"]
+  windsurf: ["Free", "Pro", "Team", "Max", "Enterprise"]
 };
 
 export const TOOL_PRICES: Record<ToolName, Record<string, number>> = {

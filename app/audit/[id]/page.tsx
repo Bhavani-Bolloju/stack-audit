@@ -83,7 +83,20 @@ export default function AuditPage() {
     if (!email || !result) return;
     setSubmitting(true);
     try {
+      //save to firebase
       await saveLead(email, result);
+
+      // Send email via Resend
+      await fetch("/api/send-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          totalMonthlySavings: result.totalMonthlySavings,
+          totalAnnualSavings: result.totalAnnualSavings,
+          auditId: result.id
+        })
+      });
       setSubmitted(true);
     } catch (err) {
       console.error("Failed to save lead:", err);
@@ -203,7 +216,7 @@ export default function AuditPage() {
         </div>
 
         {/* Low savings honest message */}
-        {result.totalMonthlySavings < 100 && (
+        {/* {result.totalMonthlySavings < 100 && (
           <div className="border border-gray-200 rounded-2xl p-6 text-center text-gray-500 text-sm">
             <p className="font-semibold text-gray-700 mb-1">
               You&apos;re spending well 👍
@@ -213,7 +226,7 @@ export default function AuditPage() {
               savings apply.
             </p>
           </div>
-        )}
+        )} */}
 
         {/* Share + capture */}
         <div className="mt-8 border border-gray-200 rounded-2xl p-6 text-center">
