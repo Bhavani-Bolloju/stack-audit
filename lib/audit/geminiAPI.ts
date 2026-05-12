@@ -1,4 +1,4 @@
-import { getAlternativeTools, CREDITS_THRESHOLD } from "../constants";
+import { CREDITS_THRESHOLD } from "../constants";
 import { ToolEntry, AuditFormData, ToolAuditResult } from "../types";
 
 function auditGeminiAPI(
