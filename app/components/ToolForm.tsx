@@ -6,6 +6,7 @@ import { loadFormData, saveFormData } from "@/lib/storage";
 import ToolEntryRow from "./ToolEntry";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
+import { saveAuditResult } from "@/lib/auditStore";
 
 const USE_CASES: { value: UseCase; label: string }[] = [
   { value: "coding", label: "Coding / Engineering" },
@@ -80,8 +81,9 @@ function ToolForm() {
 
   function handleSubmit() {
     const results = runAudit(form);
-    console.log(results, "results");
+    // console.log(results, "results");
     localStorage.setItem("auditResult", JSON.stringify(results));
+    saveAuditResult(results)
     router.push(`/audit/${results.id}`);
   }
 

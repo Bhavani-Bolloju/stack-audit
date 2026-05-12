@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { AuditResult, ToolAuditResult } from "../../../lib/types";
 import Link from "next/link";
 
 import { saveLead } from "@/lib/leads";
+
+import { getAuditResult } from "@/lib/auditStore";
 
 const RECOMMENDATION_COLORS: Record<string, string> = {
   downgrade: "bg-amber-50 border-amber-200 text-amber-700",
@@ -70,7 +72,11 @@ function ToolCard({ tool }: { tool: ToolAuditResult }) {
   );
 }
 
-export default function AuditPage() {
+export default function AuditPage({
+  params
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const [result, setResult] = useState<AuditResult | null>(null);
   const [mounted, setMounted] = useState(false);
   const [summary, setSummary] = useState<string>("");
@@ -78,6 +84,7 @@ export default function AuditPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const {id} = use(params);
 
   async function handleEmailSubmit() {
     if (!email || !result) return;
@@ -109,8 +116,15 @@ export default function AuditPage() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const stored = localStorage.getItem("auditResult");
-    if (stored) setResult(JSON.parse(stored));
-  }, []);
+    if (stored) {
+      setResult(JSON.parse(stored));
+    } else {
+      // fetch from firebase
+      getAuditResult(id).then((data) => {
+        if (data) setResult(data);
+      });
+    }
+  }, [id]);
 
   useEffect(() => {
     if (!result) return;
