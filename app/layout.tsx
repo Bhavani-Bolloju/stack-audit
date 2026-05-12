@@ -13,8 +13,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stack Audit",
-  description: "An AI spend audit tool for startups"
+  title: "StackAudit — AI Spend Audit",
+  description:
+    "Find out where you're overspending on AI tools. Free audit in 2 minutes.",
+  openGraph: {
+    title: "StackAudit — AI Spend Audit",
+    description:
+      "Find out where you're overspending on AI tools. Free audit in 2 minutes.",
+    url: "https://stackaudit.netlify.app",
+    siteName: "StackAudit",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "StackAudit — AI Spend Audit",
+    description:
+      "Find out where you're overspending on AI tools. Free audit in 2 minutes."
+  }
 };
 
 export default function RootLayout({
