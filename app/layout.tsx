@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "StackAudit — AI Spend Audit",
     description:
       "Find out where you're overspending on AI tools. Free audit in 2 minutes.",
-    url: "https://stackaudit.netlify.app",
+    url: "https://stack-audit-tool.netlify.app",
     siteName: "StackAudit",
     type: "website"
   },
