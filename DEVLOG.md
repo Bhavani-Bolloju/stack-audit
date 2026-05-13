@@ -82,3 +82,14 @@
 
 **Plan for tomorrow:** Finish remaining markdown files. Lighthouse scores. Final check. Submit.
 
+## Day 8 — 2026-05-13
+**Hours worked:** 4.5
+
+**What I did:** Fixed accessibility issues — added aria-labels, fixed contrast ratios. Lighthouse scores: Performance 100, Accessibility 99, Best Practices 100, SEO 100. Added honeypot abuse protection on email capture. Completed README with screenshots, decisions, trade-offs. Submitted to Credex via Google Form.
+
+**What I learned:** Small accessibility fixes have big impact on scores. Honeypot is the simplest abuse protection with zero user friction.
+
+**Blockers / what I'm stuck on:** User interviews completed at 0/3 — documented honestly. No blockers remaining.
+
+**Plan for tomorrow:** review all trade-off decisions and audit engine logic for potential code walkthrough.
+
