@@ -64,3 +64,6 @@ graph TD
 - Add proper analytics (Plausible or PostHog) to track funnel metrics
 - Firebase Firestore scales automatically but would need index optimization for querying leads
 
+## Abuse Protection
+
+Honeypot field on email capture form. Hidden from real users via CSS, but bots auto-fill it. If the field has a value on submission, the request is silently rejected. Chosen over rate limiting or hCaptcha for simplicity and zero friction for real users.
