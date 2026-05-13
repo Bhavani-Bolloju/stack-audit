@@ -84,10 +84,13 @@ export default function AuditPage({
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const {id} = use(params);
+  const [honeypot, setHoneypot] = useState("");
+  const { id } = use(params);
 
   async function handleEmailSubmit() {
     if (!email || !result) return;
+    if (honeypot) return;
+
     setSubmitting(true);
     try {
       //save to firebase
@@ -258,7 +261,18 @@ export default function AuditPage({
               <p className="text-sm text-gray-400 mb-4">
                 Enter your email to get a copy of this report.
               </p>
-              <div className="flex gap-2 max-w-sm mx-auto">
+
+              <form className="flex gap-2 max-w-sm mx-auto">
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 <input
                   type="email"
                   placeholder="you@company.com"
@@ -273,7 +287,7 @@ export default function AuditPage({
                 >
                   {submitting ? "Sending..." : "Send report"}
                 </button>
-              </div>
+              </form>
             </>
           }
         </div>
