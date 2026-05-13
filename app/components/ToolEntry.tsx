@@ -24,6 +24,7 @@ function ToolEntryRow({ entry, onChange, onRemove }: Props) {
   return (
     <div className="flex gap-3 items-center p-3 border rounded-lg">
       <select
+        aria-label="Select AI tool"
         value={entry.tool}
         onChange={(e) =>
           onChange({ ...entry, tool: e.target.value as ToolName, plan: "" })
@@ -38,6 +39,7 @@ function ToolEntryRow({ entry, onChange, onRemove }: Props) {
       </select>
 
       <select
+        aria-label="Select AI plan"
         value={entry.plan}
         onChange={(e) => onChange({ ...entry, plan: e.target.value })}
         className="border rounded px-2 py-1 text-sm"
@@ -58,11 +60,13 @@ function ToolEntryRow({ entry, onChange, onRemove }: Props) {
           onChange({ ...entry, monthlySpend: Number(e.target.value) })
         }
         className="border rounded px-2 py-1 text-sm w-24"
+        aria-label="Monthly spend in dollars"
       />
 
       <input
         type="number"
         placeholder="Seats"
+        aria-label="Number of seats"
         value={entry.seats || ""}
         onChange={(e) => onChange({ ...entry, seats: Number(e.target.value) })}
         className="border rounded px-2 py-1 text-sm w-20"

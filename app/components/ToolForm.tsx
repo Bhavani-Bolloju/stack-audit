@@ -83,7 +83,7 @@ function ToolForm() {
     const results = runAudit(form);
     // console.log(results, "results");
     localStorage.setItem("auditResult", JSON.stringify(results));
-    saveAuditResult(results)
+    saveAuditResult(results);
     router.push(`/audit/${results.id}`);
   }
 
@@ -114,23 +114,27 @@ function ToolForm() {
 
       <div className="flex gap-4 mb-6">
         <div>
-          <label className="block text-sm font-medium mb-1">Team size</label>
+          <label htmlFor="team_size" className="block text-sm font-medium mb-1">
+            Team size
+          </label>
           <input
+            id="team_size"
             type="number"
             min={1}
             value={form.teamSize}
             onChange={(e) =>
               setForm((prev) => ({ ...prev, teamSize: Number(e.target.value) }))
             }
-            className="border rounded px-2 py-1 w-24"
+            className="border rounded px-2 py-1 w-24 text-inherit"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="block text-sm font-medium mb-1 " htmlFor="use_case">
             Primary use case
           </label>
           <select
+            id="use_case"
             value={form.useCase}
             onChange={(e) =>
               setForm((prev) => ({
@@ -151,7 +155,7 @@ function ToolForm() {
 
       <button
         onClick={handleSubmit}
-        className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800"
+        className="bg-gray-700 text-white px-6 py-2 rounded hover:bg-gray-800"
       >
         Run Audit →
       </button>
