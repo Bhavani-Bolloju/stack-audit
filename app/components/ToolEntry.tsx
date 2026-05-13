@@ -74,7 +74,7 @@ function ToolEntryRow({ entry, onChange, onRemove }: Props) {
 
       <button
         onClick={() => onRemove(entry.id)}
-        className="text-red-500 text-sm hover:text-red-700"
+        className="text-red-700 text-sm font-semibold hover:text-red-600 hover:cursor-pointer"
       >
         Remove
       </button>
